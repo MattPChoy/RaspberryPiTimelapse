@@ -1,0 +1,17 @@
+function a(){
+    console.log("test");
+}
+
+function redirect() {
+    let url="/capture";
+    console.log("Redirecting to: " + url);
+    window.location.href = url;
+}
+
+function sendData() {
+    $.ajax(
+        
+{
+        }
+    )
+}
