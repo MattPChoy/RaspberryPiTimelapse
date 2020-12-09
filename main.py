@@ -1,4 +1,5 @@
 import picamera, time, os.path
+from config import camera # Import all the global variables that we define in the configuration file.
 from os import path
 from flask import Flask, render_template, Response, request
 from camera_pi import Camera
@@ -26,17 +27,15 @@ def getFreeFolder():
 
 
 def captureImage():
-    with picamera.PiCamera() as camera:
-        #  Do something with the camera
-        numberOfFrames = 0
-        while(True):
-            camera.capture(directoryName + "capture" + str(numberOfFrames) + imageFormat)
-            print("Capturing frame " + str(numberOfFrames))
-            numberOfFrames += 1
-            time.sleep(1)
-            if (numberOfFrames > 10):
-                break
-    # Automatically close the camera
+    #  Do something with the camera
+    numberOfFrames = 0
+    while(True):
+        camera.capture(directoryName + "capture" + str(numberOfFrames) + imageFormat)
+        print("Capturing frame " + str(numberOfFrames))
+        numberOfFrames += 1
+        time.sleep(1)
+        if (numberOfFrames > 10):
+            break
 
 @app.route('/')
 def index():
@@ -68,4 +67,4 @@ def capture():
 
 if __name__ == '__main__':
     setup()
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=True, threaded=True)
