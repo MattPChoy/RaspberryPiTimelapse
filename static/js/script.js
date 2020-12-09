@@ -9,6 +9,7 @@ function redirect() {
 }
 
 function send(x) {
+    redirect();
     $.ajax({
         url: '/data',
         method: "POST",
@@ -25,5 +26,6 @@ function send(x) {
 }
 
 function send2(x) {
+    redirect();
     $.post("/data", {"interval": x});
 }

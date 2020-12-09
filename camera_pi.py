@@ -3,7 +3,6 @@ import time
 import picamera
 from base_camera import BaseCamera
 
-
 class Camera(BaseCamera):
     @staticmethod
     def frames():
@@ -21,3 +20,4 @@ class Camera(BaseCamera):
                 # reset stream for next frame
                 stream.seek(0)
                 stream.truncate()
+            camera.close()
